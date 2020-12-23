@@ -24,7 +24,7 @@
             Войдите в свой аккаунт
           </h3>
         </div>
-        <form class="mt-8 space-y-6" action="#" method="POST">
+        <form class="mt-8 space-y-6" >
           <input type="hidden" name="remember" value="true">
           <div class="rounded-md shadow-sm -space-y-px">
             <div>
@@ -103,6 +103,7 @@ export default {
       let isMail = this.validateEmail(this.mail)
       if (isMail) {
         alert("подтверждено")
+        this.$router.push({ name: 'Loading'})
       } else {
         alert("неправильный логин или пароль")
       }

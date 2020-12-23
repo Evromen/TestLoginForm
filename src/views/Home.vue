@@ -1,8 +1,8 @@
 <template>
   <div class="home">
-    <H1>
+    <h1>
       главная страница
-    </H1>
+    </h1>
 
   </div>
 </template>

@@ -24,6 +24,11 @@ const routes = [
     path: '/restorePass',
     name: 'Restorepassword',
     component: () => import( '../views/restorePass.vue')
+  },
+  {
+    path: '/loading',
+    name: 'Loading',
+    component: () => import( '../views/Loading.vue')
   }
 ]
 
