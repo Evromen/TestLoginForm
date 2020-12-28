@@ -24,7 +24,7 @@
             Войдите в свой аккаунт
           </h3>
         </div>
-        <form class="mt-8 space-y-6" >
+        <div class="mt-8 space-y-6" >
           <input type="hidden" name="remember" value="true">
           <div class="rounded-md shadow-sm -space-y-px">
             <div>
@@ -78,7 +78,7 @@
               <p>password:{{ password }}</p>
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </div>
 
@@ -97,7 +97,7 @@ export default {
   methods: {
     validateEmail(email) {
       const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(email);
+      return re.test(String(email).toLowerCase());
     },
     sentForm() {
       let isMail = this.validateEmail(this.mail)
