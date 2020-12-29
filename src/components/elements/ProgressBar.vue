@@ -5,6 +5,7 @@
                 <div class="mt-8 flex items-center">
                     <div class="bg-grey-light h-3 rounded-full mx-auto w-full"><span class="h-full vue-gradient block rounded-full" :style="{ width: barWidth + '%' }"></span></div>
                     <div class="pl-4 text-grey-dark">{{ barWidth + '%' }}</div>
+                    <div>{{percent}}</div>
                 </div>
             </div>
         </div>
@@ -18,22 +19,10 @@
         name: "ProgressBar",
         data: () => {
             return {
-                barWidth: 0,
+               // barWidth: 0,
             }
         },
-    created:function () {
-           // console.log('Значение a: ' + this.barWidth)
-        this.toggleProgress()
-        },
-        methods: {
-            toggleProgress: function () {
-                let app = this;
-                app.interval = setInterval(function () {
-                    app.barWidth >= 100 ? clearInterval(app.interval) : app.barWidth++;
-                }, 100);
-
-            }
-        }
+        props:["barWidth"]
     }
 
 </script>
