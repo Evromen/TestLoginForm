@@ -22,3 +22,12 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Залить изменения на firebase
+```
+firebase deploy
+```
+### Собрать и Залить изменения на firebase
+```
+npm run toProd
+```
