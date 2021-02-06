@@ -3,7 +3,7 @@
         <div v-if="switch1">
             <div class="flex justify-center">
 
-                <img src="https://media0.giphy.com/media/cfuL5gqFDreXxkWQ4o/giphy.gif" class="w-40">
+                <img alt=""  src="https://media0.giphy.com/media/cfuL5gqFDreXxkWQ4o/giphy.gif" class="w-40">
             </div>
             <div>
                 <h2 class="loading">Loading</h2>
@@ -12,7 +12,7 @@
                 </ProgressBar>
             </div>
         </div>
-        <div v-else class="text-red-700 uppercase text-2xl" >
+        <div v-else class="text-red-700 uppercase text-2xl">
             completed
             <div>
                 <!-- component -->
@@ -20,7 +20,7 @@
                 <div class="m-auto px-4 py-8 max-w-xl">
                     <div class="bg-white shadow-2xl">
                         <div>
-                            <img src="https://i.ytimg.com/vi/6AU4Pty497Q/maxresdefault.jpg">
+                            <img alt="" src="https://i.ytimg.com/vi/6AU4Pty497Q/maxresdefault.jpg">
                         </div>
                         <div class="px-4 py-2 mt-2 bg-white">
                             <h2 class="font-bold text-2xl text-gray-800">что мы наделали?</h2>
@@ -35,7 +35,8 @@
                                          src="https://avatars2.githubusercontent.com/u/70772109?s=460&u=12f433bedba01d36eccb52cccac36285e64d972b&v=4"
                                          alt="avatar">
                                 </div>
-                                <a href="https://github.com/Evromen" target="_blank" class="text-gray-500">@dutikov91</a>
+                                <a href="https://github.com/Evromen" target="_blank"
+                                   class="text-gray-500">@dutikov91</a>
                             </div>
                         </div>
                     </div>
@@ -51,13 +52,12 @@
     export default {
         name: "Loading",
         components: {ProgressBar},
-        data: () => {
-            return {
-                percent: 0,
-                switch1: true
-            }
-        },
-        created: function () {
+        data: () => ({
+            percent: 0,
+            switch1: true
+
+        }),
+        created() {
             // console.log('Значение a: ' + this.barWidth)
             this.toggleProgress()
         },
