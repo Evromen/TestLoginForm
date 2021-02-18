@@ -4,6 +4,7 @@
     <router-link to="/about">About</router-link> |
     <router-link to="/login">Login</router-link> |
     <router-link to="/restorePass">Restore password</router-link> |
+    <router-link :to="{name:'Interview'}">Interview</router-link>
 <!--   <router-link to="/loading">Loading</router-link>-->
 
 
