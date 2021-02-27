@@ -10,17 +10,24 @@
                 <h2 class="mt-5 font-semibold">
                     Название опроса
                 </h2>
-                <div v-for="(question, key) in save.questions" :key="key" class="m-8 sm:w-full rounded-lg shadow-lg bg-gray-200 bg-gradient-to-r from-black-500">
+                <div v-for="(question, key) in save.questions" :key="key"
+                     class="m-8 sm:w-full rounded-lg shadow-lg bg-gray-200 bg-gradient-to-r from-black-500 card">
                     <div class="flex justify-between border-b border-gray-100 px-5 py-4">
                         <div>
-                            <h3>{{question.question}}</h3>
+                            <h3 class="question">{{question.question}}</h3>
                         </div>
 
                     </div>
 
                     <div class="Flex flex-col px-10 py-5 text-gray-600">
 
-                        <p v-for="(answer,index) in question.answers" :key="index+'-'+key" class="flex items-center mt-3"><input type="checkbox"  >{{answer}}</p>
+                        <label v-for="(answer,index) in question.answers"
+                               :key="index+'-'+key"
+                               class="flex items-center mt-3"
+                        >
+                            <input type="checkbox" v-bind:value="answer">{{answer}}
+
+                        </label>
 
 
                     </div>
@@ -31,6 +38,12 @@
 
             </div>
         </div>
+        <button type="submit"
+                class="group relative mt-3 mb-10  py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                v-on:click="check"
+        >
+            Play
+        </button>
     </div>
 </template>
 
@@ -38,11 +51,11 @@
     export default {
         name: "Interview",
         data: () => ({
-            saveAnswer:[],
-            save:{
+            saveAnswer: [],
+            save: {
                 "id": 11,
                 "title": "Подготовка машины к тех осмотру",
-                "questions":[
+                "questions": [
                     {
                         "question": "У вас есть машина?",
                         "answers": [
@@ -69,18 +82,55 @@
                         ]
                     }
                 ]
+            },
+            answer: {
+                id: 0,
+                answers: {}
             }
 
 
-
         }),
-        methods:{
-        //check(anwers){
+        methods: {
+            check() {
+                //запишем id теста
+                this.answer.id = this.save.id
+                //соберем ответы и запишем их
 
-       // }
+                let cards = document.getElementsByClassName('card')
+                //Работаем с первой карточкой
+                /*let card = cards[0]
+                let question = card.querySelector('.question').innerHTML
+                let answers = card.querySelectorAll('input[type="checkbox"]:checked')
+                let arrAnswers = []
+
+                for (let i = 0; i < answers.length; i++) {
+
+                    arrAnswers.push(answers[i].value)
+                }
+                this.answer.answers[question] = arrAnswers*/
+                //закончили работать с первой карточкой
+
+
+                //Работаем с 2рой карточкой
+                for (let a = 0; a < cards.length; a++) {
+
+
+                    let question = cards[a].querySelector('.question').innerHTML
+                    let answers = cards[a].querySelectorAll('input[type="checkbox"]:checked')
+                    let arrAnswers = []
+
+                    for (let i = 0; i < answers.length; i++) {
+
+                        arrAnswers.push(answers[i].value)
+                    }
+                    this.answer.answers[question] = arrAnswers
+                }
+
+
+                console.log(this.answer)
+            }
         }
     }
-
 
 </script>
 
