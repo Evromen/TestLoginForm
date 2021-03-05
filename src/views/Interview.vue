@@ -1,22 +1,15 @@
 <template>
     <div>
-        <h1 class="font-black">
-            ОПРОСНИК
-        </h1>
+        <h1 class="font-black">ОПРОСНИК</h1>
         <hr/>
         <div class="flex justify-center">
             <div>
 
-                <h2 class="mt-5 font-semibold">
-                    Название опроса
-                </h2>
+                <h2 class="mt-5 font-semibold">Название опроса</h2>
                 <div v-for="(question, key) in save.questions" :key="key"
-                     class="m-8 sm:w-full rounded-lg shadow-lg bg-gray-200 bg-gradient-to-r from-black-500 card">
+                     class="m-8 border-4 border-red-700 border-opacity-50 sm:w-full rounded-lg shadow-lg bg-gray-200 bg-gradient-to-r from-black-500 card">
                     <div class="flex justify-between border-b border-gray-100 px-5 py-4">
-                        <div>
-                            <h3 class="question">{{question.question}}</h3>
-                        </div>
-
+                        <h3 class="question">{{question.question}}</h3>
                     </div>
 
                     <div class="Flex flex-col px-10 py-5 text-gray-600">
@@ -34,16 +27,26 @@
 
 
                 </div>
+                // разобраться с кнопкой
+                <div style="margin-right: -31px" class="flex justify-end ">
+                    <button type="submit"
+                            class="mt-3 mb-10  py-2 px-4 border border-transparent hover:border-green-500
+                text-sm font-medium rounded-md text-white
+                bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            v-on:click="check"
+                    >
+                        Отправить
+                    </button>
+                </div>
 
 
             </div>
+
+
+
         </div>
-        <button type="submit"
-                class="group relative mt-3 mb-10  py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                v-on:click="check"
-        >
-            Play
-        </button>
+
+
     </div>
 </template>
 
