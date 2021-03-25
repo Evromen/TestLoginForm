@@ -4,5 +4,6 @@ import router from '@/router'
 import '@/assets/tailwind.css'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import store from './store'
 
-createApp(App).use(router).use(VueAxios, axios).mount('#app')
+createApp(App).use(store).use(router).use(VueAxios, axios).mount('#app')

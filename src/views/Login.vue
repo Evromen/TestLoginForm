@@ -88,9 +88,9 @@
                             Войти
                         </button>
                         <div>
-                            <p>mail:{{ mail }}</p>
-                            <p>password:{{ password }}</p>
-                            <pre> {{v$.mail}} </pre>
+<!--                            <p>mail:{{ mail }}</p>-->
+<!--                            <p>password:{{ password }}</p>-->
+<!--                            <pre> {{v$.mail}} </pre>-->
                         </div>
                     </div>
                 </div>
@@ -106,12 +106,12 @@
 
     export default {
         name: "Login",
-        data: () => {
-            return {
+        data: () =>({
+
                 mail: "",
                 password: "",
-            }
-        },
+            }),
+
         setup: () => ({v$: useVuelidate()}),
         validations() {
             return {
@@ -125,10 +125,14 @@
                 return re.test(String(email).toLowerCase());
             },
             sentForm() {
+                let mail = this.mail
                 let isMail = this.validateEmail(this.mail)
                 if (isMail) {
                     alert("подтверждено")
+                    this.$store.commit('SET_EMAIL',mail);
+                    this.$store.commit('SET_authorization',true)
                     this.$router.push({name: 'Loading'})
+
                 } else {
                     alert("неправильный логин или пароль")
                 }

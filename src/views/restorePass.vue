@@ -35,8 +35,8 @@
                         восстановить логин и пароль
                     </button>
                     <div>
-                        <p>mail:{{ mail }}</p>
-                        <pre> {{v$.mail}} </pre>
+<!--                        <p>mail:{{ mail }}</p>-->
+<!--                        <pre> {{v$.mail}} </pre>-->
                     </div>
                 </div>
             </div>

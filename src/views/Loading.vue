@@ -102,6 +102,5 @@
         content: "";
         animation: dots 5s linear infinite;
     }
-
 </style>
 
