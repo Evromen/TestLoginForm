@@ -58,8 +58,13 @@
 
         }),
         created() {
+            if(this.$store.state.user.authorization && this.$store.state.iTakSoidet.loadingFlag){
+                this.switch1 = false
+            } else {
+                this.toggleProgress()
+            }
             // console.log('Значение a: ' + this.barWidth)
-            this.toggleProgress()
+
         },
         methods: {
             toggleProgress: function () {
@@ -69,6 +74,7 @@
                     if (app.percent >= 100) {
                         clearInterval(app.interval)
                         app.switch1 = false
+                        app.$store.commit('SET_loadingFlag',true)
                     } else {
                         app.percent++
                     }
