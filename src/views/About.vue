@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="flex justify-center">
-            <img alt="Cat revoles" src="https://i.gifer.com/ZIu6.gif" class="w-80">
+            <img alt="Cat revoles" src="https://static.tildacdn.com/tild3165-6463-4563-a333-643137616537/cat-computer-veryfas.gif">
         </div>
         <!-- v-on =@ -->
         <div @click="message" class="flex justify-center">

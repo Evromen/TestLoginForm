@@ -4,6 +4,7 @@ import createPersistedState from "vuex-persistedstate";
 export default createStore({
     state: {
         user: {
+            data: null,
             email: '',
             password: '',
             authorization:false
@@ -13,6 +14,9 @@ export default createStore({
         }
     },
     mutations: {
+        SET_USER(state,data) {
+            state.user.data = data
+        },
         SET_EMAIL(state, value) {
             state.user.email = value
         },

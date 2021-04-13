@@ -1,32 +1,28 @@
 <template>
     <div>
-        <!--
-        This example requires Tailwind CSS v2.0+
 
-        This example requires some changes to your config:
-
-        ```
-        // tailwind.config.js
-        module.exports = {
-          // ...
-          plugins: [
-            // ...
-            require('@tailwindcss/forms'),
-          ]
-        }
-        ```
-      -->
         <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
             <div class="max-w-md w-full space-y-8">
                 <div>
-                    <!--        <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">-->
                     <h3 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-                        Войдите в свой аккаунт
+                        Регистрация
                     </h3>
                 </div>
                 <div class="mt-8 space-y-6">
                     <input type="hidden" name="remember" value="true">
                     <div class="rounded-md shadow-sm -space-y-px">
+                        <div>
+                            <label>
+                                Введите имя
+                                <input type="text" placeholder="IVAN" class="" v-model="name"/>
+
+                            </label>
+                        </div>
+
+
+
+
+
                         <div>
                             <label for="email-address" class="sr-only">Email address</label>
                             <input id="email-address" name="email" type="email" autocomplete="email" v-model="mail"
@@ -52,6 +48,24 @@
                                    class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                    placeholder="Password">
                         </div>
+                        <div>
+                            <label>
+                                Потвердите пароль
+                                <input type="text" placeholder="" class="" v-model="repeatPassword"/>
+
+                            </label>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
                     </div>
 
                     <div class="flex items-center justify-between">
@@ -77,7 +91,7 @@
                                 :disabled="v$.$invalid"
                         >
           <span class="absolute left-0 inset-y-0 flex items-center pl-3" v-if="v$.$invalid">
-            <!-- Heroicon name: lock-closed -->
+
             <svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg"
                  viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd"
@@ -87,10 +101,15 @@
           </span>
                             Войти
                         </button>
+
+
+
                         <div>
-                            <!--                            <p>mail:{{ mail }}</p>-->
-                            <!--                            <p>password:{{ password }}</p>-->
-                            <!--                            <pre> {{v$.mail}} </pre>-->
+<!--                                                        <p>mail:{{ mail }}</p>-->
+<!--                                                        <p>password:{{ password }}</p>-->
+<!--                                                        <p>name:{{ name }}</p>-->
+<!--                                                        <p>repeatPassword:{{ repeatPassword }}</p>-->
+<!--                                                        <pre> {{v$.mail}} </pre>-->
                         </div>
                     </div>
                 </div>
@@ -106,11 +125,12 @@
     import firebase from 'firebase/app'
 
     export default {
-        name: "Login",
+        name: "checkin",
         data: () => ({
-
+            name:'',
             mail: "",
             password: "",
+            repeatPassword:''
         }),
 
         setup: () => ({v$: useVuelidate()}),
@@ -126,15 +146,23 @@
                 return re.test(String(email).toLowerCase());
             },
             sentForm() {
+               // console.log(this.mail,this.password)
+
                 firebase
                     .auth()
-                    .signInWithEmailAndPassword(this.mail, this.password)
-                    .then( data => {
-                        this.$store.commit('SET_USER', data);
-                        this.$store.commit('SET_EMAIL', mail);
-                        this.$store.commit('SET_authorization', true)
-                        this.$router.push({name: 'Loading'})
+                    .createUserWithEmailAndPassword(this.mail, this.password)
+                    .then(data => {
+                        data.user
+                            .updateProfile({
+                                displayName: this.mail
+                            })
+                            .then(() => {
+                                this.$router.push({name: "Login"})
+                            })
                     })
+                .catch(err => {
+                    console.log(err)
+                })
                 let mail = this.mail
                 let isMail = this.validateEmail(this.mail)
                 if (isMail) {
@@ -145,7 +173,8 @@
 
                 } else {
                     alert("неправильный логин или пароль")
-                }
+                 }
+
             }
         }
     }

@@ -17,7 +17,8 @@
                 <router-link to="/restorePass">Restore password</router-link>
                 |
                 <router-link :to="{name:'Interview'}">Interview</router-link>
-                <!--   <router-link to="/loading">Loading</router-link>-->
+                |
+                <router-link :to="{name:'checkin'}">checkin</router-link>
 
 
             </div>
